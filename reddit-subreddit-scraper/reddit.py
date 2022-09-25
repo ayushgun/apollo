@@ -3,6 +3,7 @@
 
 # Imports
 import dataclasses
+import datetime
 import pprint
 import dotenv
 import praw
@@ -25,7 +26,7 @@ class Post:
         url: a permanent link to the Reddit post.
         num_comments: the total number of comments on the post.
         top_comments: a list of the scores, authors, and contents of
-          the top 5 comments on the post.
+          the top 6 comments on the post.
     """
 
     post_id: str
@@ -71,14 +72,15 @@ class Scraper:
         """
 
         return [
-            {"score": com.score, "body": com.body, "author": com.author.name}
+            {"score": com.score, "author": com.author, "body": com.body}
             for com in comments
-            if not isinstance(com, praw.models.reddit.more.MoreComments)
+            if isinstance(com, praw.models.Comment)
         ]
 
     def search_for_keyword(
         self, search_query: str, sorting: str = "hot", interval: str = "day"
     ) -> list[Post]:
+        # sourcery skip: class-extract-method
         """
         Search subreddit posts by query.
 
@@ -107,9 +109,9 @@ class Scraper:
         # Store submission data as list of reddit.Post objects
         post_data = []
         for submission in search_results:
-            # Configure Comment Searching
+            # Configure comment search
             submission.comment_sort = "confidence"
-            submission.comment_limit = 5
+            submission.comment_limit = 6
 
             # Append reddit.Post object to list
             post_data.append(
@@ -127,10 +129,69 @@ class Scraper:
 
         return post_data
 
+    def posts_from_half_year(self) -> list[Post]:
+        """
+        Fetch top posts of the last 26 weeks.
+
+        Searches through the top subreddit posts within the last year. Returns posts
+        created within a 26 week interval from the run date.
+
+        Returns:
+            A list of reddit.Post objects containing submission data.
+
+        Raises:
+            urllib.error.HTTPError: occurs when the scraper is unable to search posts.
+        """
+
+        # Fetch top posts from last year
+        top_posts = self.subreddit.top(time_filter="year")
+
+        # Calculate unix epoch time
+        current_time = datetime.datetime.now(datetime.timezone.utc).timestamp()
+
+        # Store submission data as list of reddit.Post objects
+        post_data = []
+        for submission in top_posts:
+            # Filter for submissions from <26 weeks
+            if submission.created_utc > current_time - 15720000:
+                # Configure comment search
+                submission.comment_sort = "confidence"
+                submission.comment_limit = 6
+
+                # Append reddit.Post object to list
+                post_data.append(
+                    Post(
+                        post_id=submission.id,
+                        author=submission.author,
+                        score=submission.score,
+                        title=submission.title,
+                        body=submission.selftext,
+                        url=f"https://reddit.com{submission.permalink}",
+                        num_comments=submission.num_comments,
+                        top_comments=self.__fetch_comments(submission.comments.list()),
+                    )
+                )
+
+        return post_data
+
+    def comments_from_half_year(self) -> list[dict[str, int | str]]:
+        """
+        Fetch comments from top posts of the last 26 weeks.
+
+        Searches through the top subreddit posts within the last year. Returns top comments
+        of posts created within a 26 week interval from the run date.
+
+        Returns:
+            A list of dictionaries containing comment scores, authors, and bodies.
+
+        Raises:
+            urllib.error.HTTPError: occurs when the scraper is unable to search posts.
+        """
+
+        top_posts = self.posts_from_half_year()
+        return [post.top_comments for post in top_posts]
+
 
 if __name__ == "__main__":
-    scraper = Scraper("r/stocks")
-
-    # 1) Search posts for keyword
-    results = scraper.search_for_keyword(search_query="NASDAQ")
-    pprint.pprint(dataclasses.asdict(results[0]))
+    scraper = Scraper("r/cryptocurrency")
+    pprint.pprint(scraper.search_for_keyword(search_query=""))
