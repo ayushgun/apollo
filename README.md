@@ -5,7 +5,7 @@
 <div align="center">
   <img src="https://i.imgur.com/1mtaJFe.png" alt="Logo" width="80" height="80">
 
-<h3 align="center">Subreddit Scraper</h3>
+<h3 align="center">Apollo</h3>
 
   <p align="center">
     A Python CLI for scraping subreddits, parsing submissions, and extracting quantitatively-represented sentiment.
@@ -19,7 +19,7 @@
 
 ## Getting Started
 
-To start using the CLI, please follow the following steps to beging the installation and setup process.
+To start using Apollo, please follow the following steps to beging the installation and setup process.
 
 ### Prerequisites
 
@@ -33,11 +33,11 @@ pip3 install -3 requirements.txt
 
 1. Clone the repo.
    ```sh
-   git clone https://github.com/ayushgun/Ayush-Gundawar-Quant-OA
+   git clone https://github.com/ayushgun/apollo
    ```
 2. CD into the scraper directory.
    ```sh
-   cd ./Ayush-Gundawar-Quant-OA/scraper
+   cd ./apollo/scraper
    ```
 3. Create a Reddit application [here](https://www.reddit.com/prefs/apps). Be sure to save your client ID & secret.
 4. Input your application information in the `.env` configuration file.<br/>
