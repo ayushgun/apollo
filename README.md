@@ -10,7 +10,7 @@
   <p align="center">
     A Python CLI for scraping subreddits, parsing submissions, and extracting quantitatively-represented sentiment.
     <br />
-    <a href="https://ayushgun.github.io/apollo/reddit.html"><strong>Explore the API Docs »</strong></a>
+    <a href="https://ayushgun.github.io/apollo/reddit.html"><strong>Explore the Module Docs »</strong></a>
     <br />
   </p>
 </div>
@@ -81,4 +81,4 @@ python3 reddit.py top_posts r/investing --output dataclass
 _The output flag has the options dataclass and json_
 
 <br/>
-⚠️ For option and API examples, please refer to the API documentation: https://ayushgun.github.io/apollo/reddit.html
+⚠️ For option and module usage examples, please refer to the module API documentation: https://ayushgun.github.io/apollo/reddit.html
