@@ -99,7 +99,8 @@ def search_for_keyword(
     Search subreddit posts by query.
 
     Searches subreddit posts for posts containing the search query. Sorts subreddit
-    submissions by hot by default. Searched posts are from the most recent day by default.
+    submissions by hot by default. Searched posts are from the most recent day by
+    default.
 
     Args:
         subreddit_name: name of the subreddit to search.
