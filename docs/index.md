@@ -58,7 +58,7 @@ This command searches for posts in a subreddit that contain a specific keyword.
 Example usage:
 
 ```bash
-python3 reddit.py keyword-search --subreddit_name "learnpython" --search_query "web scraping" --sorting "hot" --interval "week" --output "json"
+python3 reddit.py keyword-search "learnpython" "web scraping" --sorting "hot" --interval "week" --output "json"
 ```
 
 This command will search for posts in the "learnpython" subreddit that contain the keyword "web scraping". The posts are sorted by "hot" and are from the past week. The output will be stored in a JSON file.
@@ -70,7 +70,7 @@ This command fetches the top posts from the last 26 weeks of a given subreddit.
 Example usage:
 
 ```bash
-python3 reddit.py top-posts --subreddit_name "news" --output "dataclass"
+python3 reddit.py top-posts "news" --output "dataclass"
 ```
 
 This command will fetch the top posts from the past 26 weeks in the "news" subreddit. The output will be stored in a JSON file.
@@ -82,7 +82,7 @@ This command fetches the top comments from the top posts of the last 26 weeks of
 Example usage:
 
 ```bash
-python3 reddit.py top-comments --subreddit_name "AskReddit"
+python3 reddit.py top-comments "AskReddit"
 ```
 
 This command will fetch the top comments from the top posts of the past 26 weeks in the "AskReddit" subreddit. The output will be stored in a JSON file.
