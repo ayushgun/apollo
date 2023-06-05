@@ -1,6 +1,6 @@
 # Apollo User Guide
 
-Apollo is a Python-based CLI and Python module that allows you to parse and extract bulk submission data from Reddit subreddits.
+Apollo is a CLI and Python module that allows you to parse and extract bulk submission data from Reddit subreddits.
 
 ## Overview
 
