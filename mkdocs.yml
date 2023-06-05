@@ -53,6 +53,8 @@ plugins:
           options:
             show_if_no_docstring: true
             show_signature_annotations: true
+      watch:
+        - src/apollo
   # Autodoc configuration.
   # https://mkdocstrings.github.io/recipes/#automatic-code-reference-pages
   - gen-files:
