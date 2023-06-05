@@ -149,10 +149,10 @@ class RedditScraper:
         from a specific time interval.
 
         Args:
-            subreddit_name (str): Name of the subreddit to search in.
-            search_query (str): The keyword to search for.
-            sorting (str): The sorting criteria for the posts (default is "hot").
-            interval (str): The time interval to consider for the posts (default is
+            subreddit_name: Name of the subreddit to search in.
+            search_query: The keyword to search for.
+            sorting: The sorting criteria for the posts (default is "hot").
+            interval: The time interval to consider for the posts (default is
                 "day").
             output: The type of output to generate (default is "json").
 
