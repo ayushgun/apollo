@@ -46,7 +46,7 @@ username=ayushgun
 Apollo provides a user-friendly command-line interface for interaction. You can perform three main tasks: keyword-search, top-posts, and top-comments. Check the command-line help for more detailed usage instructions.
 
 ```
-python main.py --help
+python3 main.py --help
 ```
 
 ### Examples
