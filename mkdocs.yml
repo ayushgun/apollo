@@ -1,0 +1,80 @@
+# Set strict to true to turn warnings into errors to catch warnings within CI.
+strict: true
+theme:
+  name: material
+  # By default, fonts are pulled from Google on the Internet. To support offline usage, this is
+  # disabled.
+  font: false
+  palette:
+    scheme: slate
+    primary: green
+    accent: yellow
+  icon:
+    logo: material/reddit
+    # GitHub specific.
+    repo: fontawesome/brands/github
+  features:
+    - content.code.annotate
+    - content.code.copy
+    - content.tabs.link
+    - navigation.expand
+    - navigation.instant
+    - navigation.footer
+    - navigation.top
+    - navigation.tracking
+    - search.highlight
+    - search.share
+    - search.suggest
+    - toc.follow
+markdown_extensions:
+  - admonition
+  - footnotes
+  - pymdownx.details
+  - pymdownx.keys
+  - pymdownx.highlight
+  - pymdownx.superfences
+  - pymdownx.snippets
+  - pymdownx.tabbed:
+      alternate_style: true
+  - md_in_html
+extra_css:
+  - static/stylesheets/extra.css
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/ayushgun/apollo
+plugins:
+  - search
+  - offline:
+      enabled: !ENV [MKDOCS_MATERIAL_OFFLINE, false]
+  - mkdocstrings:
+      handlers:
+        python:
+          options:
+            show_if_no_docstring: true
+            show_signature_annotations: true
+  # Autodoc configuration.
+  # https://mkdocstrings.github.io/recipes/#automatic-code-reference-pages
+  - gen-files:
+      scripts:
+        - docs/gen_ref_pages.py
+  - literate-nav:
+      nav_file: SUMMARY.md
+  # This plugin is used to validate URLs (including anchors).
+  - htmlproofer:
+      # This is not enabled by default because this requires network I/O, so it is inherently not
+      # exactly reproducible. For larger projects, this can also slow local build times.
+      validate_external_urls: !ENV [HTMLPROOFER_VALIDATE_EXTERNAL_URLS, false]
+      raise_error: True
+watch:
+  # Watch src/ directory to reload on changes to docstrings for mkdocstrings plugin.
+  - src
+site_name: Apollo
+copyright: Copyright &copy; 2022-2023 Ayush Gundawar
+# GitHub Specific Configuration.
+repo_name: ayushgun/apollo
+repo_url: https://github.com/ayushgun/apollo
+edit_uri: edit/main/docs/user_guide/docs/
+nav:
+  - index.md
+  - Code Reference: reference/

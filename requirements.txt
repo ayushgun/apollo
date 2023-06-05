@@ -1,3 +1,0 @@
-praw==7.6.0
-python-dotenv==0.21.0
-typer==0.6.1

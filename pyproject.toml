@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "apollo"
+version = "1.0.0"
+description = "A CLI and Python module for parsing and extracting bulk submission data from subreddits."
+authors = ["Your Name <you@example.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+praw = "^7.7.0"
+python-dotenv = "^1.0.0"
+typer = {extras = ["all"], version = "^0.9.0"}
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
