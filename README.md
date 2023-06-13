@@ -32,7 +32,7 @@ Apollo also offers the capability of storing this data efficiently in different 
 4. Input your Reddit application information in the .env configuration file. See the [example](#example-configuration) below.
 5. Move to the Apollo directory with `cd src/apollo`
 6. To use the CLI, view the help menu with `python3 cli.py --help`
-7. To use the Python module, see the [model usage](#model-usage) below.
+7. To use the Python module, see the [model usage](#module-usage) below.
 
 ## Example Configuration
 
@@ -42,7 +42,7 @@ client_secret=F9JKcHCdXrZNcv7K_KpEvErNJCjyfu
 username=ayushgun
 ```
 
-## Model Usage
+## Module Usage
 
 Apollo provides a developer-friendly Python module to programmatically scrape data. See the [module code reference](https://ayushgun.github.io/apollo/) for documentation.
 
