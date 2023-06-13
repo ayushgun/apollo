@@ -44,7 +44,7 @@ username=ayushgun
 
 ## Model Usage
 
-Apollo provides a developer-friendly Python module to programmatically scrape data. See `reddit.py` for function-specific documentation.
+Apollo provides a developer-friendly Python module to programmatically scrape data. See the [module code reference](https://ayushgun.github.io/apollo/) for documentation.
 
 ### Module Example
 
