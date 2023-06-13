@@ -31,7 +31,8 @@ Apollo also offers the capability of storing this data efficiently in different 
 3. Create a Reddit application here. Save your `client id` & `secret`.
 4. Input your Reddit application information in the .env configuration file. See the [example](#example-configuration) below.
 5. Move to the Apollo directory with `cd src/apollo`
-6. View the help menu with `python3 reddit.py --help`
+6. To use the CLI, view the help menu with `python3 cli.py --help`
+7. To use the Python module, see the [model usage](#model-usage) below.
 
 ## Example Configuration
 
@@ -41,7 +42,24 @@ client_secret=F9JKcHCdXrZNcv7K_KpEvErNJCjyfu
 username=ayushgun
 ```
 
-## Usage
+## Model Usage
+
+Apollo provides a developer-friendly Python module to programmatically scrape data. See `reddit.py` for function-specific documentation.
+
+### Module Example
+
+```
+from config import RedditConfig
+from reddit import RedditScraper
+
+config = RedditConfig(".env")
+client = config.get_client()
+scraper = RedditScraper(client)
+
+scraper.comments_from_half_year("stocks")  # get the top comments
+```
+
+## CLI Usage
 
 Apollo provides a user-friendly command-line interface for interaction. You can perform three main tasks: keyword-search, top-posts, and top-comments. Check the command-line help for more detailed usage instructions.
 
@@ -49,7 +67,7 @@ Apollo provides a user-friendly command-line interface for interaction. You can 
 python3 main.py --help
 ```
 
-### Examples
+### CLI Examples
 
 #### Keyword Search
 
@@ -58,7 +76,7 @@ This command searches for posts in a subreddit that contain a specific keyword.
 Example usage:
 
 ```bash
-python3 reddit.py keyword-search "learnpython" "web scraping" --sorting "hot" --interval "week" --output "json"
+python3 cli.py keyword-search "learnpython" "web scraping" --sorting "hot" --interval "week" --output "json"
 ```
 
 This command will search for posts in the "learnpython" subreddit that contain the keyword "web scraping". The posts are sorted by "hot" and are from the past week. The output will be stored in a JSON file.
@@ -70,7 +88,7 @@ This command fetches the top posts from the last 26 weeks of a given subreddit.
 Example usage:
 
 ```bash
-python3 reddit.py top-posts "news" --output "dataclass"
+python3 cli.py top-posts "news" --output "dataclass"
 ```
 
 This command will fetch the top posts from the past 26 weeks in the "news" subreddit. The output will be stored in a JSON file.
@@ -82,7 +100,7 @@ This command fetches the top comments from the top posts of the last 26 weeks of
 Example usage:
 
 ```bash
-python3 reddit.py top-comments "AskReddit"
+python3 cli.py top-comments "AskReddit"
 ```
 
 This command will fetch the top comments from the top posts of the past 26 weeks in the "AskReddit" subreddit. The output will be stored in a JSON file.
