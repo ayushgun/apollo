@@ -48,7 +48,7 @@ Apollo provides a developer-friendly Python module to programmatically scrape da
 
 ### Module Example
 
-```
+```python
 from config import RedditConfig
 from reddit import RedditScraper
 
